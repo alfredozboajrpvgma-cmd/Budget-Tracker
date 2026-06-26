@@ -1,4 +1,4 @@
-# Pink Cloud (Client Application)
+# Pink Cloud
 
 Pink Cloud is a highly interactive, Progressive Web Application (PWA) client designed to transform personal finance and budget tracking through gamification. By merging robust expense monitoring with engaging progression mechanics, the Pink Cloud interface encourages users to establish, maintain, and enjoy healthy financial habits.
 
