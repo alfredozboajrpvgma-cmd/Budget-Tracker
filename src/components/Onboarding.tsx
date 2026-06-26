@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import { useApp } from '../context/AppContext';
+
 import { useThemeMode } from '../context/ThemeContext';
 
 const buildingTypes = ['Emergency Fund', 'Education', 'Travel', 'Laptop', 'Business', 'House'];

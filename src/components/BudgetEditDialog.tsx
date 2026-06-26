@@ -4,7 +4,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { useApp } from '../context/AppContext';
 import { useCurrency } from '../context/CurrencyContext';
 import { formatNumberInput, parseNumberInput } from '../utils/format';
-import { useThemeMode } from '../context/ThemeContext';
+
 
 interface BudgetEditDialogProps {
   open: boolean;

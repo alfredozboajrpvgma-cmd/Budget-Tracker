@@ -10,7 +10,7 @@ interface CloudGoalProps {
   size?: 'small' | 'medium' | 'large';
   delay?: number;
   onClick?: () => void;
-  dragConstraints?: React.RefObject<Element>;
+  dragConstraints?: any;
   ownerName?: string;
   ownerId?: string;
   amount?: number;

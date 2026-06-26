@@ -36,7 +36,7 @@ const AuthScreen = () => {
     setCaptchaToken(null);
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (_provider?: string) => {
     if (isCaptchaEnabled && !captchaToken) {
       setError('Please complete the captcha challenge.');
       return;
