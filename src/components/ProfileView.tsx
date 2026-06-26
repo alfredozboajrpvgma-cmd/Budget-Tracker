@@ -420,8 +420,6 @@ const ProfileView = () => {
           </>
         );
       })()}
-
-      <AdUnit adSlot="3333333333" />
     </Box>
   );
 };

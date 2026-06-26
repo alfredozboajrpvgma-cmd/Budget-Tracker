@@ -7,11 +7,12 @@ interface AdUnitProps {
   style?: React.CSSProperties;
   format?: 'auto' | 'fluid' | 'rectangle' | 'horizontal' | 'vertical';
   responsive?: boolean;
+  variant?: 'inline' | 'sticky';
 }
 
 const PUBLISHER_ID = 'ca-pub-2648688590727817';
 
-export default function AdUnit({ adSlot, style, format = 'auto', responsive = true }: AdUnitProps) {
+export default function AdUnit({ adSlot, style, format = 'auto', responsive = true, variant = 'inline' }: AdUnitProps) {
   const adLoaded = useRef(false);
   const { isDark } = useThemeMode();
 
@@ -27,6 +28,25 @@ export default function AdUnit({ adSlot, style, format = 'auto', responsive = tr
       console.error('AdSense error:', e);
     }
   }, []);
+
+  const adElement = (
+    <ins
+      className="adsbygoogle"
+      style={{ display: 'block', minWidth: '250px', ...style }}
+      data-ad-client={PUBLISHER_ID}
+      data-ad-slot={adSlot}
+      data-ad-format={format}
+      data-full-width-responsive={responsive ? 'true' : 'false'}
+    />
+  );
+
+  if (variant === 'sticky') {
+    return (
+      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {adElement}
+      </Box>
+    );
+  }
 
   return (
     <Card
@@ -64,14 +84,7 @@ export default function AdUnit({ adSlot, style, format = 'auto', responsive = tr
         Advertisement
       </Typography>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-        <ins
-          className="adsbygoogle"
-          style={{ display: 'block', minWidth: '250px', ...style }}
-          data-ad-client={PUBLISHER_ID}
-          data-ad-slot={adSlot}
-          data-ad-format={format}
-          data-full-width-responsive={responsive ? 'true' : 'false'}
-        />
+        {adElement}
       </Box>
     </Card>
   );

@@ -130,8 +130,6 @@ const Dashboard = () => {
         </Box>
       </motion.div>
 
-      <AdUnit adSlot="1111111111" />
-
       <Box sx={{ mt: 2, position: 'relative' }}>
         <Box sx={{ px: 3, display: 'flex', alignItems: 'center', mb: 3 }}>
           <Typography variant="h6" sx={{ color: isDark ? '#E8E2E4' : '#5C4A52', fontWeight: 600 }}>Your Dream Sky</Typography>

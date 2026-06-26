@@ -76,8 +76,6 @@ const AnalyticsView = () => {
         </Grid>
       </Grid>
 
-      <AdUnit adSlot="2222222222" />
-
       <Box sx={{ mt: 6 }}>
         <Typography variant="h6" sx={{ color: isDark ? '#F0E6F6' : '#5C4A52', fontWeight: 600, mb: 3 }}>All Transactions</Typography>
         {expenses.length === 0 ? (

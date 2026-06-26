@@ -10,6 +10,8 @@ import { useThemeMode } from '../context/ThemeContext';
 import ReleaseNotesModal from './ReleaseNotesModal';
 import { markReleaseSeen, shouldShowReleaseNotes } from '../utils/releaseNotes';
 
+import AdUnit from './AdUnit';
+
 const Onboarding = lazy(() => import('./Onboarding'));
 const CloudPet = lazy(() => import('./CloudPet'));
 const SkyBackground = lazy(() => import('./SkyBackground'));
@@ -116,13 +118,19 @@ const MainLayout = ({ needsOnboarding }: MainLayoutProps) => {
           PinkCloud
         </Typography>
       </Box>
-      <Box sx={{ flexGrow: 1, overflowY: 'auto', overflowX: 'hidden', pb: '90px' }}>
+      <Box sx={{ flexGrow: 1, overflowY: 'auto', overflowX: 'hidden', pb: '140px' }}>
         <ViewContainer
           currentView={currentView}
           addGoalTrigger={addGoalTrigger}
           addExpenseTrigger={addExpenseTrigger}
         />
       </Box>
+
+      {/* Fixed Sticky Ad Unit above Bottom Nav */}
+      <Box sx={{ position: 'fixed', bottom: '65px', left: 0, right: 0, zIndex: 10, backgroundColor: isDark ? 'rgba(40,28,58,0.95)' : 'rgba(255,255,255,0.95)', borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`, display: 'flex', justifyContent: 'center' }}>
+        <AdUnit adSlot="1111111111" format="horizontal" responsive={false} variant="sticky" style={{ width: '100%', maxWidth: '400px', height: '60px', margin: 0, padding: 0 }} />
+      </Box>
+
       <BottomNav currentView={currentView} onChange={handleNavChange} actionMenuOpen={actionMenuOpen} />
       <Suspense fallback={null}>
         <CloudPet />
