@@ -5,6 +5,7 @@ import { AppProvider, useApp } from './context/AppContext';
 import { CurrencyProvider } from './context/CurrencyContext';
 import { PwaUpdateProvider } from './context/PwaUpdateContext';
 import LazyFallback from './components/LazyFallback';
+import AdBlockDetector from './components/AdBlockDetector';
 
 const AuthScreen = lazy(() => import('./components/AuthScreen'));
 const MainLayout = lazy(() => import('./components/MainLayout'));
@@ -42,6 +43,7 @@ function App() {
       <PwaUpdateProvider>
         <CurrencyProvider>
           <AppProvider>
+            <AdBlockDetector />
             <AppContent />
           </AppProvider>
         </CurrencyProvider>
