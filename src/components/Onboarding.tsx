@@ -23,7 +23,6 @@ const textFieldSx = {
 };
 
 const Onboarding = ({ onComplete }: OnboardingProps) => {
-  const { completeOnboarding } = useApp();
   const { isDark } = useThemeMode();
   const [step, setStep] = useState(0);
   const [name, setName] = useState('');

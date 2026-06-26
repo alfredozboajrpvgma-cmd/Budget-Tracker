@@ -417,7 +417,6 @@ export const api = {
     const todaySavingRows = (savings || []).filter(s => isToday(s.created_at));
     const todaySavings = todaySavingRows.reduce((sum, s) => sum + toNumber(s.amount), 0);
 
-    const todayExpenseRows = (expenses || []).filter(e => isToday(e.created_at));
 
     const prng = createRandomGenerator(`${user.id}-${new Date().toDateString()}`);
     const numQuests = Math.floor(prng() * 7) + 4; // 4 to 10 quests

@@ -15,7 +15,7 @@ interface GoalDetailDialogProps {
 
 const GoalDetailDialog = ({ goal, onClose }: GoalDetailDialogProps) => {
   const { user, setSavingsDialogOpen, setSavingsGoalId, deleteGoal, showToast, setPublicProfileId } = useApp();
-  const { fmt, symbol } = useCurrency();
+  const { symbol } = useCurrency();
   const { isDark } = useThemeMode();
   const [deleting, setDeleting] = useState(false);
 

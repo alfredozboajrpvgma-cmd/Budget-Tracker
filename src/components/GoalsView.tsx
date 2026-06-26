@@ -14,7 +14,7 @@ interface GoalsViewProps {
 }
 
 const IslandView = ({ addTrigger = 0 }: GoalsViewProps) => {
-  const { user, goals, stats, addGoal, setSelectedGoal } = useApp();
+  const { goals, stats, addGoal, setSelectedGoal } = useApp();
   const { fmt, symbol } = useCurrency();
   const { isDark } = useThemeMode();
   const [open, setOpen] = useState(false);
@@ -23,8 +23,8 @@ const IslandView = ({ addTrigger = 0 }: GoalsViewProps) => {
   const [customType, setCustomType] = useState('');
   const [targetStr, setTargetStr] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const inProgressConstraintsRef = useRef<HTMLDivElement | null>(null);
-  const completedConstraintsRef = useRef<HTMLDivElement | null>(null);
+  const inProgressConstraintsRef = useRef<Element>(null);
+  const completedConstraintsRef = useRef<Element>(null);
   useEffect(() => {
     if (addTrigger > 0) setOpen(true);
   }, [addTrigger]);

@@ -15,7 +15,6 @@ interface SavingsDialogProps {
 const SavingsDialog = ({ open, onClose, preselectedGoalId }: SavingsDialogProps) => {
   const { goals, contributeToGoal } = useApp();
   const { symbol } = useCurrency();
-  const { isDark } = useThemeMode();
   const activeGoals = goals.filter(g => g.progress < 100);
   const [goalId, setGoalId] = useState(preselectedGoalId ?? '');
   const [amount, setAmount] = useState('');

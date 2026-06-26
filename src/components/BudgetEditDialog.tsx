@@ -14,7 +14,6 @@ interface BudgetEditDialogProps {
 const BudgetEditDialog = ({ open, onClose }: BudgetEditDialogProps) => {
   const { user, stats, updateMonthlyBudget } = useApp();
   const { symbol } = useCurrency();
-  const { isDark } = useThemeMode();
   const [amount, setAmount] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
