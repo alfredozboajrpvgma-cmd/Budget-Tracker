@@ -34,7 +34,7 @@ const SkyBackground = () => {
 
   return (
     <Box sx={{
-      position: 'fixed', bottom: 80, left: 0, right: 0, height: '45vh', zIndex: 0, pointerEvents: 'none', background: skyPalette.bg,
+      position: 'fixed', bottom: 0, left: 0, right: 0, height: '50vh', zIndex: 0, pointerEvents: 'none', background: skyPalette.bg,
       maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0))',
       WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0))'
     }}>
