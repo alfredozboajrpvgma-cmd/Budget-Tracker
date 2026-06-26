@@ -7,16 +7,10 @@ const SkyBackground = () => {
   const [hour, setHour] = useState(new Date().getHours());
   const { isDark: themeDark, isLiteMode } = useThemeMode();
 
-  if (isLiteMode) return null;
-
   useEffect(() => {
     const interval = setInterval(() => setHour(new Date().getHours()), 60000);
     return () => clearInterval(interval);
   }, []);
-
-  const isNight = hour >= 18 || hour < 6;
-  const isMorning = hour >= 6 && hour < 10;
-  const showStars = isNight || themeDark;
 
   const stars = useMemo(() => Array.from({ length: 30 }).map(() => ({
     x: Math.random() * 800,
@@ -25,6 +19,12 @@ const SkyBackground = () => {
     delay: Math.random() * 5,
     duration: Math.random() * 3 + 2
   })), []);
+
+  const isNight = hour >= 18 || hour < 6;
+  const isMorning = hour >= 6 && hour < 10;
+  const showStars = isNight || themeDark;
+
+  if (isLiteMode) return null;
 
   const skyPalette = themeDark
     ? { bg: 'linear-gradient(to top, rgba(50,40,55,0.5) 0%, rgba(0,0,0,0) 100%)', sun: '#E8A9C1', layer1: '#4A3650', layer2: '#302235' }
