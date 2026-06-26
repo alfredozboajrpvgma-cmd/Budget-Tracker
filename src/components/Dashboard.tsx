@@ -11,6 +11,7 @@ import { useCurrency } from '../context/CurrencyContext';
 import { useThemeMode } from '../context/ThemeContext';
 import { getGreeting } from '../utils/greeting';
 import { xpForLevel } from '../utils/xp';
+import AdUnit from './AdUnit';
 
 const Dashboard = () => {
   const { user, goals, stats, setSelectedGoal, setSavingsDialogOpen, setSavingsGoalId } = useApp();
@@ -129,9 +130,12 @@ const Dashboard = () => {
         </Box>
       </motion.div>
 
+      <AdUnit adSlot="1111111111" />
+
       <Box sx={{ mt: 2, position: 'relative' }}>
         <Box sx={{ px: 3, display: 'flex', alignItems: 'center', mb: 3 }}>
           <Typography variant="h6" sx={{ color: isDark ? '#E8E2E4' : '#5C4A52', fontWeight: 600 }}>Your Dream Sky</Typography>
+
           <Box sx={{ flexGrow: 1, height: '1px', background: 'linear-gradient(90deg, rgba(255,193,218,0.5) 0%, rgba(255,255,255,0) 100%)', ml: 2 }} />
         </Box>
 
