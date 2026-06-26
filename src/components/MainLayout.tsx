@@ -127,7 +127,7 @@ const MainLayout = ({ needsOnboarding }: MainLayoutProps) => {
       </Box>
 
       {/* Fixed Sticky Ad Unit above Bottom Nav */}
-      <Box sx={{ position: 'fixed', bottom: '65px', left: 0, right: 0, zIndex: 10, backgroundColor: isDark ? 'rgba(40,28,58,0.95)' : 'rgba(255,255,255,0.95)', borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`, display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ position: 'absolute', bottom: '65px', left: 0, right: 0, zIndex: 10, backgroundColor: isDark ? 'rgba(40,28,58,0.95)' : 'rgba(255,255,255,0.95)', borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`, display: 'flex', justifyContent: 'center' }}>
         <AdUnit adSlot="1111111111" format="horizontal" responsive={false} variant="sticky" style={{ width: '100%', maxWidth: '400px', height: '60px', margin: 0, padding: 0 }} />
       </Box>
 
