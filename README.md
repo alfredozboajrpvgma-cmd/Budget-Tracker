@@ -1,11 +1,6 @@
-# React + TypeScript + Vite
+# Pink Cloud
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Pink Cloud** is a budget tracker that gamifies savings. Built with React and Supabase, it monitors expenses, savings goals, and quests to calculate a dynamic "Sunshine Score." It features automated Deno edge functions that analyze your spending intensity and send personalized push notifications to keep you motivated on your financial journey.
 
 ## React Compiler
 
