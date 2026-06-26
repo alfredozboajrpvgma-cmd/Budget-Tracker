@@ -23,6 +23,8 @@ export function setPushRegistered(registered: boolean) {
   localStorage.setItem(PUSH_REGISTERED_KEY, registered ? 'true' : 'false');
 }
 
+const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+
 export async function registerPushSubscription(): Promise<boolean> {
   if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
     console.warn('Push notifications not supported in this browser');
@@ -32,7 +34,7 @@ export async function registerPushSubscription(): Promise<boolean> {
   const token = await getAccessToken();
   if (!token) return false;
 
-  const keyRes = await fetch('/api/push/vapid-public-key');
+  const keyRes = await fetch(`${API_URL}/api/push/vapid-public-key`);
   if (!keyRes.ok) throw new Error('Push server not configured. Run: npm run server');
   const { publicKey } = await keyRes.json();
 
@@ -47,7 +49,7 @@ export async function registerPushSubscription(): Promise<boolean> {
     });
   }
 
-  const res = await fetch('/api/push/subscribe', {
+  const res = await fetch(`${API_URL}/api/push/subscribe`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -72,7 +74,7 @@ export async function unregisterPushSubscription(): Promise<void> {
   const registration = await navigator.serviceWorker.getRegistration();
   const subscription = await registration?.pushManager.getSubscription();
 
-  await fetch('/api/push/subscribe', {
+  await fetch(`${API_URL}/api/push/subscribe`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -92,7 +94,7 @@ export async function pingActivity(
   const token = await getAccessToken();
   if (!token) return;
 
-  await fetch('/api/push/activity', {
+  await fetch(`${API_URL}/api/push/activity`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
