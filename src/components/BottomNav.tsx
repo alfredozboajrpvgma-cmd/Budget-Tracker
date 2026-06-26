@@ -23,7 +23,7 @@ const BottomNav = ({ currentView, onChange, actionMenuOpen }: BottomNavProps) =>
   const { isDark } = useThemeMode();
   const navFill = isDark ? 'rgba(40, 28, 58, 0.95)' : 'rgba(255,255,255,0.95)';
   return (
-    <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 10 }}>
+    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10 }}>
       {/* SVG Notch Background */}
       <Box sx={{ position: 'relative', height: 80 }}>
         <svg
