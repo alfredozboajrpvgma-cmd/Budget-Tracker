@@ -4,6 +4,8 @@ import cors from 'cors';
 import pushRoutes from './routes/push.js';
 import { configureWebPush } from './cron/scheduler.js';
 
+import { globalLimiter } from './middleware/rateLimit.js';
+
 const app = express();
 const PORT = process.env.PORT ?? 3001;
 
@@ -21,6 +23,10 @@ app.use(cors({
     callback(new Error('Not allowed by CORS'));
   },
 }));
+
+// Apply global rate limiting to all requests by default
+app.use(globalLimiter);
+
 app.use(express.json({ limit: '32kb' }));
 
 app.get('/api/health', (_req, res) => {

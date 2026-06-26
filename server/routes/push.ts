@@ -5,6 +5,8 @@ import type { AuthedRequest } from '../middleware/supabaseAuth.js';
 import { supabaseAuth } from '../middleware/supabaseAuth.js';
 import { sendTestPush } from '../cron/scheduler.js';
 
+import { strictLimiter, activityLimiter } from '../middleware/rateLimit.js';
+
 const router = Router();
 
 router.get('/vapid-public-key', (_req, res) => {
@@ -16,7 +18,7 @@ router.get('/vapid-public-key', (_req, res) => {
   res.json({ publicKey: key });
 });
 
-router.post('/subscribe', supabaseAuth, async (req: AuthedRequest, res) => {
+router.post('/subscribe', strictLimiter, supabaseAuth, async (req: AuthedRequest, res) => {
   const userId = req.userId!;
   const { subscription } = req.body as {
     subscription?: { endpoint?: string; keys?: { p256dh?: string; auth?: string } };
@@ -65,7 +67,7 @@ router.post('/subscribe', supabaseAuth, async (req: AuthedRequest, res) => {
   res.json({ ok: true });
 });
 
-router.delete('/subscribe', supabaseAuth, async (req: AuthedRequest, res) => {
+router.delete('/subscribe', strictLimiter, supabaseAuth, async (req: AuthedRequest, res) => {
   const userId = req.userId!;
   const endpoint = req.body?.endpoint as string | undefined;
 
@@ -78,7 +80,7 @@ router.delete('/subscribe', supabaseAuth, async (req: AuthedRequest, res) => {
   res.json({ ok: true });
 });
 
-router.post('/activity', supabaseAuth, async (req: AuthedRequest, res) => {
+router.post('/activity', activityLimiter, supabaseAuth, async (req: AuthedRequest, res) => {
   const userId = req.userId!;
   const type = (req.body?.type as string) || 'active';
   const now = new Date().toISOString();
@@ -98,7 +100,7 @@ router.post('/activity', supabaseAuth, async (req: AuthedRequest, res) => {
   res.json({ ok: true });
 });
 
-router.post('/test', supabaseAuth, async (req: AuthedRequest, res) => {
+router.post('/test', strictLimiter, supabaseAuth, async (req: AuthedRequest, res) => {
   const body = typeof req.body?.body === 'string' ? req.body.body.slice(0, 160) : undefined;
   const count = await sendTestPush(
     req.userId!,
