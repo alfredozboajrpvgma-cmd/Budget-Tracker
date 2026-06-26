@@ -29,3 +29,17 @@ server/dist
 # Supabase temp and dev dist
 supabase/.temp
 dev-dist
+
+# Environment and config files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+*secret*
+*credential*
+*.sqlite
+*.db
