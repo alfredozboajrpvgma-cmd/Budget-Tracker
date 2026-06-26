@@ -1,27 +1,44 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/pwa-icon-192.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#FF5FA2" />
-    <meta name="description" content="PinkCloud — track expenses, save goals, and budget smarter." />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="PinkCloud" />
-    <title>PinkCloud</title>
-  </head>
-  <body>
-    <form name="support-question" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input type="hidden" name="form-name" value="support-question" />
-      <input name="bot-field" />
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <textarea name="question"></textarea>
-    </form>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/pwa-icon-512.png" />
+  <link rel="apple-touch-icon" href="/pwa-icon-192.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#FF5FA2" />
+
+  <!-- Primary Meta Tags -->
+  <meta name="description"
+    content="Pink Cloud — Your gamified personal finance companion. Track expenses, save goals, and budget smarter." />
+
+  <!-- Open Graph / Facebook Messenger Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://itrackmoo.netlify.app/" />
+  <meta property="og:title" content="Pink Cloud - Gamified Budget Tracker" />
+  <meta property="og:description"
+    content="Track your expenses, build your savings, and budget smarter with gamified quests and the Sunshine Score." />
+  <meta property="og:image" content="https://itrackmoo.netlify.app/pwa-icon-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Pink Cloud" />
+  <title>Pink Cloud</title>
+</head>
+
+<body>
+  <form name="support-question" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="support-question" />
+    <input name="bot-field" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <textarea name="question"></textarea>
+  </form>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
