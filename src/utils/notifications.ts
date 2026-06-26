@@ -46,18 +46,35 @@ export const setNotificationsEnabled = (enabled: boolean) => {
   localStorage.setItem(NOTIFICATIONS_ENABLED_KEY, enabled ? 'true' : 'false');
 };
 
-export const sendNotification = (title: string, options?: NotificationOptions) => {
+export const sendNotification = async (title: string, options?: NotificationOptions) => {
   if (!areNotificationsEnabled()) return;
   
   if (Notification.permission === 'granted') {
-    const notification = new Notification(title, {
-      icon: '/favicon.svg',
-      ...options
-    });
-    
-    notification.onclick = () => {
-      window.focus();
-      notification.close();
-    };
+    try {
+      const notification = new Notification(title, {
+        icon: '/favicon.svg',
+        ...options
+      });
+      
+      notification.onclick = () => {
+        window.focus();
+        notification.close();
+      };
+    } catch (err) {
+      if (err instanceof TypeError && 'serviceWorker' in navigator) {
+        // Handle 'Illegal constructor' error on mobile/Android PWA
+        try {
+          const registration = await navigator.serviceWorker.ready;
+          await registration.showNotification(title, {
+            icon: '/favicon.svg',
+            ...options
+          });
+        } catch (swErr) {
+          console.error('Push notification via SW failed:', swErr);
+        }
+      } else {
+        console.error('Push notification failed:', err);
+      }
+    }
   }
 };
