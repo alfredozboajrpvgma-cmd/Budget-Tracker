@@ -5,7 +5,9 @@ import { useThemeMode } from '../context/ThemeContext';
 
 const SkyBackground = () => {
   const [hour, setHour] = useState(new Date().getHours());
-  const { isDark: themeDark } = useThemeMode();
+  const { isDark: themeDark, isLiteMode } = useThemeMode();
+
+  if (isLiteMode) return null;
 
   useEffect(() => {
     const interval = setInterval(() => setHour(new Date().getHours()), 60000);

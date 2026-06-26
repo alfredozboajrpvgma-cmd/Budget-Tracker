@@ -3,8 +3,5 @@ export async function getServiceWorkerRegistration(): Promise<ServiceWorkerRegis
     throw new Error('Service workers are not supported in this browser');
   }
 
-  const existing = await navigator.serviceWorker.getRegistration('/');
-  if (existing) return existing;
-
-  return navigator.serviceWorker.register('/sw.js', { scope: '/' });
+  return await navigator.serviceWorker.ready;
 }

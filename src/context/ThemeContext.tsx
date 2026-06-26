@@ -4,6 +4,8 @@ import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/st
 interface ThemeContextValue {
   isDark: boolean;
   toggleTheme: () => void;
+  isLiteMode: boolean;
+  toggleLiteMode: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
@@ -111,6 +113,10 @@ export function ThemeModeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(() => {
     return localStorage.getItem('pinkcloud_darkmode') === 'true';
   });
+  
+  const [isLiteMode, setIsLiteMode] = useState(() => {
+    return localStorage.getItem('pinkcloud_litemode') === 'true';
+  });
 
   const toggleTheme = useCallback(() => {
     setIsDark(prev => {
@@ -120,10 +126,18 @@ export function ThemeModeProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const toggleLiteMode = useCallback(() => {
+    setIsLiteMode(prev => {
+      const next = !prev;
+      localStorage.setItem('pinkcloud_litemode', String(next));
+      return next;
+    });
+  }, []);
+
   const theme = useMemo(() => makeTheme(isDark ? 'dark' : 'light'), [isDark]);
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
+    <ThemeContext.Provider value={{ isDark, toggleTheme, isLiteMode, toggleLiteMode }}>
       <MuiThemeProvider theme={theme}>
         {children}
       </MuiThemeProvider>

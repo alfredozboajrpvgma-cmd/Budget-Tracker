@@ -1,21 +1,39 @@
 export const NOTIFICATIONS_ENABLED_KEY = 'pinkcloud_notifications_enabled';
 
-export const requestNotificationPermission = async (): Promise<boolean> => {
-  if (!('Notification' in window)) {
-    console.warn('This browser does not support desktop notification');
-    return false;
-  }
-  
-  if (Notification.permission === 'granted') {
-    return true;
-  }
-  
-  if (Notification.permission !== 'denied') {
-    const permission = await Notification.requestPermission();
-    return permission === 'granted';
-  }
-  
-  return false;
+export const requestNotificationPermission = (): Promise<boolean> => {
+  return new Promise((resolve) => {
+    if (!('Notification' in window)) {
+      console.warn('This browser does not support desktop notification');
+      resolve(false);
+      return;
+    }
+    
+    if (Notification.permission === 'granted') {
+      resolve(true);
+      return;
+    }
+    
+    if (Notification.permission !== 'denied') {
+      const handlePermission = (permission: NotificationPermission) => {
+        resolve(permission === 'granted');
+      };
+      
+      try {
+        const promise = Notification.requestPermission(handlePermission);
+        if (promise) {
+          promise.then(handlePermission).catch((err) => {
+            console.error('Push permission error:', err);
+            resolve(false);
+          });
+        }
+      } catch (err) {
+        console.error('Push permission error:', err);
+        resolve(false);
+      }
+    } else {
+      resolve(false);
+    }
+  });
 };
 
 export const areNotificationsEnabled = (): boolean => {

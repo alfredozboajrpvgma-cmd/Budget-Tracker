@@ -17,6 +17,7 @@ import InstallMobileRoundedIcon from '@mui/icons-material/InstallMobileRounded';
 import { useApp } from '../context/AppContext';
 import { useCurrency, CURRENCIES } from '../context/CurrencyContext';
 import { useThemeMode } from '../context/ThemeContext';
+import BatterySaverIcon from '@mui/icons-material/BatterySaverRounded';
 import { requestNotificationPermission, sendNotification, setNotificationsEnabled, areNotificationsEnabled, NOTIFICATIONS_ENABLED_KEY } from '../utils/notifications';
 import { registerPushSubscription, unregisterPushSubscription, pingActivity } from '../utils/pushSubscription';
 import { xpForLevel } from '../utils/xp';
@@ -36,7 +37,7 @@ const FAQS = [
 const ProfileView = () => {
   const { user, stats, logout, showToast } = useApp();
   const { currency, setCurrency, fmt } = useCurrency();
-  const { isDark, toggleTheme } = useThemeMode();
+  const { isDark, toggleTheme, isLiteMode, toggleLiteMode } = useThemeMode();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [notificationsEnabled, setNotificationsEnabledState] = useState(() => {
     const stored = localStorage.getItem(NOTIFICATIONS_ENABLED_KEY);
@@ -196,16 +197,20 @@ const ProfileView = () => {
             ) : (
               <Switch checked={notificationsEnabled} onChange={async (e) => {
                 const checked = e.target.checked;
+                
+                let granted = false;
+                if (checked) {
+                  granted = await requestNotificationPermission();
+                  if (!granted) {
+                    setNotificationsEnabledState(false);
+                    setNotificationsEnabled(false);
+                    return;
+                  }
+                }
+
                 setIsPushLoading(true);
                 try {
                   if (checked) {
-                    const granted = await requestNotificationPermission();
-                    if (!granted) {
-                      setNotificationsEnabledState(false);
-                      setNotificationsEnabled(false);
-                      setIsPushLoading(false);
-                      return;
-                    }
                     await registerPushSubscription();
                     setNotificationsEnabledState(true);
                     setNotificationsEnabled(true);
@@ -219,10 +224,11 @@ const ProfileView = () => {
                     await pingActivity('active', false);
                     await unregisterPushSubscription();
                   }
-                } catch (err) {
+                } catch (err: any) {
                   setNotificationsEnabledState(false);
                   setNotificationsEnabled(false);
                   console.error(err);
+                  showToast(err.message || 'Failed to register push subscription', 'error');
                 } finally {
                   setIsPushLoading(false);
                 }
@@ -242,6 +248,13 @@ const ProfileView = () => {
             <ListItemButton sx={{ py: 2, borderRadius: '12px' }}>
               <ListItemIcon><SettingsRoundedIcon sx={{ color: '#7C4DFF' }} /></ListItemIcon>
               <ListItemText primary="Dark Mode" secondary={isDark ? 'On' : 'Off'} />
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          <ListItem disablePadding secondaryAction={<Switch checked={isLiteMode} onChange={toggleLiteMode} />}>
+            <ListItemButton sx={{ py: 2, borderRadius: '12px' }}>
+              <ListItemIcon><BatterySaverIcon sx={{ color: '#4CAF50' }} /></ListItemIcon>
+              <ListItemText primary="Lite Mode" secondary={isLiteMode ? 'On (Animations disabled)' : 'Off (Full experience)'} />
             </ListItemButton>
           </ListItem>
           <Divider />

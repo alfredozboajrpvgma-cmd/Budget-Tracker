@@ -45,7 +45,7 @@ const SPARKLES = [
 
 const CloudPet = () => {
   const { stats, expenses } = useApp();
-  const { isDark } = useThemeMode();
+  const { isDark, isLiteMode } = useThemeMode();
   const [toastMessage, setToastMessage] = useState('');
   const [hidden, setHidden] = useState(false);
   const [isHappy, setIsHappy] = useState(false);
@@ -75,7 +75,7 @@ const CloudPet = () => {
     }
   }, [toastMessage]);
 
-  if (hidden) return null;
+  if (hidden || isLiteMode) return null;
 
   const glowColor = isDark ? 'rgba(244, 143, 177, 0.5)' : 'rgba(255, 95, 162, 0.35)';
 
