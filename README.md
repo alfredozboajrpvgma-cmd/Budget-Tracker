@@ -1,68 +1,64 @@
-# Pink Cloud
+# Pink Cloud (Client Application)
 
-**Pink Cloud** is a budget tracker that gamifies savings. Built with React and Supabase, it monitors expenses, savings goals, and quests to calculate a dynamic "Sunshine Score." It features automated Deno edge functions that analyze your spending intensity and send personalized push notifications to keep you motivated on your financial journey.
+Pink Cloud is a highly interactive, Progressive Web Application (PWA) client designed to transform personal finance and budget tracking through gamification. By merging robust expense monitoring with engaging progression mechanics, the Pink Cloud interface encourages users to establish, maintain, and enjoy healthy financial habits.
 
-## React Compiler
+## Comprehensive Feature Breakdown
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Financial Tracking & Budget Management
+At its core, the client provides a seamless interface for a reliable financial ledger. 
+- **Expense Logging:** Intuitive forms for logging daily expenses with categorical tagging.
+- **Budget Monitoring:** Real-time data visualization of spending velocity versus the allocated budget limit.
+- **Savings Goals:** Interactive dashboards to establish customized savings targets and visually track incremental progress over time.
 
-## Expanding the ESLint configuration
+### The "Sunshine Score" Interface
+To provide immediate, actionable feedback on financial health, the client visualizes a proprietary metric known as the Sunshine Score. 
+- **Dynamic Calculation:** The interface mathematically weights the user's spending intensity against their saving streak to produce a continuous, gamified health metric.
+- **Visual Feedback:** The score directly influences the application's UI, providing immediate visual reinforcement for healthy financial decisions.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Gamification & Quest System
+To combat the fatigue typically associated with long-term financial tracking, the application incorporates RPG-style UI progression.
+- **Dynamic Quests:** Users are presented with tailored financial challenges on their dashboard.
+- **Milestone Rewards:** Completing quests triggers micro-animations and unlocks visual rewards and progression markers within the application interface.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Progressive Web App (PWA) & Offline Resilience
+The Pink Cloud client is built with an offline-first philosophy, ensuring the UI remains responsive and usable regardless of network conditions.
+- **Installability:** The application can be installed natively on iOS, Android, and Desktop environments directly from the browser.
+- **Service Workers:** Leveraging Workbox, the application aggressively caches static assets and essential application shells for instant loading.
+- **Background Synchronization:** Utilizing IndexedDB for local state management, users can interact with the app and log expenses while entirely offline. The client seamlessly handles data reconciliation once network connectivity is restored.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Technology Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Framework:** React 19 with TypeScript for robust, type-safe UI components.
+- **Build Tool:** Vite for rapid compilation, Hot Module Replacement (HMR), and optimized production bundling.
+- **Component Library:** Material UI (MUI) serves as the foundational design system, augmented by custom CSS.
+- **Animation:** Framer Motion is utilized for fluid, micro-interaction animations that enhance the gamified feel.
+- **Icons:** Lucide React and MUI Icons.
+- **Service Workers:** Workbox for offline caching and PWA functionality.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Local Development Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+To run the Pink Cloud client locally, ensure you have Node.js (v18+) and npm installed.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Environment Variables**
+   Create a `.env.local` file in the root directory and add the necessary environment configurations required by the Vite client.
+   ```env
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+3. **Start the Development Server**
+   ```bash
+   # Starts the Vite frontend development server
+   npm run dev
+   ```
+
+4. **Production Build**
+   ```bash
+   # Compiles TypeScript and builds the optimized PWA bundle for deployment
+   npm run build
+   ```
