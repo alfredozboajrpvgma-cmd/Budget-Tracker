@@ -25,7 +25,6 @@ import { submitSupportQuestion } from '../utils/netlifyForms';
 import { usePwaInstall } from '../hooks/usePwaInstall';
 import { usePwaUpdateContext } from '../context/PwaUpdateContext';
 import { APP_VERSION, APP_BUILD_TIME, formatBuildDate } from '../utils/version';
-import AdUnit from './AdUnit';
 
 const FAQS = [
   { q: 'How do I add a new expense?', a: 'Tap the + button in the center of the bottom nav to log an expense.' },

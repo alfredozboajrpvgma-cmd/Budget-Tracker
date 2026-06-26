@@ -7,7 +7,6 @@ import { useCurrency } from '../context/CurrencyContext';
 import { CATEGORY_EMOJI } from '../utils/greeting';
 import { useThemeMode } from '../context/ThemeContext';
 import type { ExpenseCategory } from '../types';
-import AdUnit from './AdUnit';
 
 const AnalyticsView = () => {
   const { expenses, stats } = useApp();

@@ -11,7 +11,6 @@ import { useCurrency } from '../context/CurrencyContext';
 import { useThemeMode } from '../context/ThemeContext';
 import { getGreeting } from '../utils/greeting';
 import { xpForLevel } from '../utils/xp';
-import AdUnit from './AdUnit';
 
 const Dashboard = () => {
   const { user, goals, stats, setSelectedGoal, setSavingsDialogOpen, setSavingsGoalId } = useApp();
