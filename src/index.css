@@ -15,13 +15,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
   max-width: 100vw;
   /* Soft animated background */
   background: radial-gradient(circle at 15% 50%, rgba(255, 193, 218, 0.4), transparent 50%),
