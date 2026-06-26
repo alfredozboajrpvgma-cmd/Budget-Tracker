@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "echo 'No build step required - server uses tsx'",
     "dev": "tsx watch index.ts",
     "start": "tsx index.ts",
     "generate-vapid": "tsx scripts/generate-vapid.ts"
