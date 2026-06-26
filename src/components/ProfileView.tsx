@@ -320,9 +320,11 @@ const ProfileView = () => {
           )}
         </Box>
         <Dialog 
-          open={logoutDialogOpen} 
-          onClose={() => setLogoutDialogOpen(false)}
-          PaperProps={{ sx: { borderRadius: '24px', p: 1, maxWidth: '400px' } }}
+          {...({
+            open: logoutDialogOpen,
+            onClose: () => setLogoutDialogOpen(false),
+            PaperProps: { sx: { borderRadius: '24px', p: 1, maxWidth: '400px' } }
+          } as any)}
         >
           <DialogTitle sx={{ fontWeight: 800, fontSize: '1.4rem', pb: 1 }}>
             Log Out

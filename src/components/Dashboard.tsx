@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [questsOpen, setQuestsOpen] = useState(false);
   const [budgetEditOpen, setBudgetEditOpen] = useState(false);
   const [hour, setHour] = useState(new Date().getHours());
-  const skyConstraintsRef = useRef(null);
+  const skyConstraintsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => setHour(new Date().getHours()), 60000);

@@ -54,7 +54,7 @@ function generateShareCode(length = 8) {
 export const api = {
   async login({ email, password, provider, mode = 'login', captchaToken }: { provider?: string; email?: string; password?: string; name?: string; mode?: 'login' | 'signup'; captchaToken?: string }) {
     if (provider === 'google' || provider === 'facebook') {
-      const { data, error } = await supabase.auth.signInWithOAuth({
+      const { error } = await supabase.auth.signInWithOAuth({
         provider: provider as any,
         options: { redirectTo: window.location.origin }
       });

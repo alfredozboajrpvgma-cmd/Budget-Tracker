@@ -214,13 +214,15 @@ const MainLayout = ({ needsOnboarding }: MainLayoutProps) => {
             Enter the 6-character dream code to join and save together.
           </Typography>
           <TextField
-            autoFocus
-            fullWidth
-            label="Dream Code"
-            value={joinCode}
-            onChange={e => setJoinCode(e.target.value.toUpperCase())}
-            sx={{ '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
-            inputProps={{ maxLength: 6 }}
+            {...({
+              autoFocus: true,
+              fullWidth: true,
+              label: "Dream Code",
+              value: joinCode,
+              onChange: (e: any) => setJoinCode(e.target.value.toUpperCase()),
+              sx: { '& .MuiOutlinedInput-root': { borderRadius: '12px' } },
+              inputProps: { maxLength: 6 }
+            } as any)}
           />
         </DialogContent>
         <DialogActions sx={{ px: 3, pb: 3 }}>

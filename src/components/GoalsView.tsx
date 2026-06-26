@@ -23,8 +23,8 @@ const IslandView = ({ addTrigger = 0 }: GoalsViewProps) => {
   const [customType, setCustomType] = useState('');
   const [targetStr, setTargetStr] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const inProgressConstraintsRef = useRef(null);
-  const completedConstraintsRef = useRef(null);
+  const inProgressConstraintsRef = useRef<HTMLDivElement | null>(null);
+  const completedConstraintsRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (addTrigger > 0) setOpen(true);
   }, [addTrigger]);
