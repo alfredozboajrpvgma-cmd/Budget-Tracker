@@ -19,23 +19,25 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    obfuscatorPlugin({
-      include: ['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx'],
-      exclude: [/node_modules/],
-      enforce: 'post',
-      apply: 'build',
-      debugger: true,
-      options: {
-        compact: true,
-        controlFlowFlattening: true,
-        controlFlowFlatteningThreshold: 0.75,
-        deadCodeInjection: true,
-        deadCodeInjectionThreshold: 0.4,
-        stringArray: true,
-        stringArrayEncoding: ['base64'],
-        stringArrayThreshold: 0.75
-      }
-    }),
+    {
+      ...obfuscatorPlugin({
+        include: ['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx'],
+        exclude: [/node_modules/],
+        apply: 'build',
+        debugger: true,
+        options: {
+          compact: true,
+          controlFlowFlattening: true,
+          controlFlowFlatteningThreshold: 0.75,
+          deadCodeInjection: true,
+          deadCodeInjectionThreshold: 0.4,
+          stringArray: true,
+          stringArrayEncoding: ['base64'],
+          stringArrayThreshold: 0.75
+        }
+      }),
+      enforce: 'post'
+    },
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: false,
