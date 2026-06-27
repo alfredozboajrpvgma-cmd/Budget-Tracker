@@ -160,7 +160,7 @@ export default function SettingsDrawer({ open, onClose }: SettingsDrawerProps) {
                 placeholder="Type your question here..."
                 value={supportQuestion}
                 onChange={e => setSupportQuestion(e.target.value)}
-                inputProps={{ maxLength: 500 }}
+                slotProps={{ htmlInput: { maxLength: 500 } }}
                 sx={{ mb: 0.5, '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
               />
               <Typography variant="caption" sx={{ display: 'block', textAlign: 'right', mb: 2, color: supportQuestion.length >= 500 ? 'error.main' : 'text.secondary' }}>
@@ -363,7 +363,7 @@ export default function SettingsDrawer({ open, onClose }: SettingsDrawerProps) {
         <Dialog 
           open={logoutDialogOpen}
           onClose={() => setLogoutDialogOpen(false)}
-          PaperProps={{ sx: { borderRadius: '24px', p: 1, maxWidth: '400px' } } as any}
+          slotProps={{ paper: { sx: { borderRadius: '24px', p: 1, maxWidth: '400px' } } }}
         >
           <DialogTitle sx={{ fontWeight: 800, fontSize: '1.4rem', pb: 1 }}>
             Log Out
@@ -392,7 +392,7 @@ export default function SettingsDrawer({ open, onClose }: SettingsDrawerProps) {
         <Dialog 
           open={deleteAccountDialogOpen}
           onClose={() => setDeleteAccountDialogOpen(false)}
-          PaperProps={{ sx: { borderRadius: '24px', p: 1, maxWidth: '400px' } } as any}
+          slotProps={{ paper: { sx: { borderRadius: '24px', p: 1, maxWidth: '400px' } } }}
         >
           <DialogTitle sx={{ fontWeight: 800, fontSize: '1.4rem', pb: 1, color: '#E53935' }}>
             Leaving so soon? 🥺
@@ -410,7 +410,7 @@ export default function SettingsDrawer({ open, onClose }: SettingsDrawerProps) {
               placeholder="Please tell us why you're leaving... (Optional)"
               value={deleteReason}
               onChange={(e) => setDeleteReason(e.target.value)}
-              inputProps={{ maxLength: 300 }}
+              slotProps={{ htmlInput: { maxLength: 300 } }}
               sx={{ '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
             />
             <Typography variant="caption" sx={{ display: 'block', textAlign: 'right', mt: 0.5, color: deleteReason.length >= 300 ? 'error.main' : 'text.secondary' }}>
@@ -458,11 +458,13 @@ export default function SettingsDrawer({ open, onClose }: SettingsDrawerProps) {
       anchor="right"
       open={open}
       onClose={handleClose}
-      PaperProps={{
-        sx: {
-          width: { xs: '100%', sm: 400 },
-          background: isDark ? '#121212' : '#ffffff',
-          backgroundImage: 'none'
+      slotProps={{
+        paper: {
+          sx: {
+            width: { xs: '100%', sm: 400 },
+            background: isDark ? '#121212' : '#ffffff',
+            backgroundImage: 'none'
+          }
         }
       }}
     >

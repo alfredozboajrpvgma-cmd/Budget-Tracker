@@ -1,5 +1,4 @@
 import { Box, Typography, Card, Grid, Avatar, LinearProgress } from '@mui/material';
-import { motion } from 'framer-motion';
 import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import LocalFireDepartmentRoundedIcon from '@mui/icons-material/LocalFireDepartmentRounded';
