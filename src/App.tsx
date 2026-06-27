@@ -9,8 +9,26 @@ import AdBlockDetector from './components/AdBlockDetector';
 
 const AuthScreen = lazy(() => import('./components/AuthScreen'));
 const MainLayout = lazy(() => import('./components/MainLayout'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 
 function AppContent() {
+  const path = window.location.pathname;
+  if (path === '/privacy') {
+    return (
+      <Suspense fallback={<LazyFallback minHeight="100dvh" />}>
+        <PrivacyPolicy />
+      </Suspense>
+    );
+  }
+  if (path === '/terms') {
+    return (
+      <Suspense fallback={<LazyFallback minHeight="100dvh" />}>
+        <TermsOfService />
+      </Suspense>
+    );
+  }
+
   const { isAuthenticated, needsOnboarding, loading } = useApp();
 
   if (loading) {

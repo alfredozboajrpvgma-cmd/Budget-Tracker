@@ -5,38 +5,26 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Link,
   Typography,
 } from '@mui/material';
 import type { SvgIconComponent } from '@mui/icons-material';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
-import CloudRoundedIcon from '@mui/icons-material/CloudRounded';
-import ReceiptLongRoundedIcon from '@mui/icons-material/ReceiptLongRounded';
-import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded';
 import InsertChartRoundedIcon from '@mui/icons-material/InsertChartRounded';
-import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-import CloudOffRoundedIcon from '@mui/icons-material/CloudOffRounded';
 import InstallMobileRoundedIcon from '@mui/icons-material/InstallMobileRounded';
 import TuneRoundedIcon from '@mui/icons-material/TuneRounded';
 import { useThemeMode } from '../context/ThemeContext';
 import { APP_VERSION } from '../utils/version';
 import {
-  RELEASE_CONTACT_EMAIL,
   RELEASE_FEATURES,
   type ReleaseFeatureIcon,
 } from '../utils/releaseNotes';
 
 const FEATURE_ICON_MAP: Record<ReleaseFeatureIcon, { Icon: SvgIconComponent; color: string }> = {
   dashboard: { Icon: WbSunnyRoundedIcon, color: '#FFB74D' },
-  dreams: { Icon: CloudRoundedIcon, color: '#90CAF9' },
-  expenses: { Icon: ReceiptLongRoundedIcon, color: '#F48FB1' },
-  shared: { Icon: GroupsRoundedIcon, color: '#80CBC4' },
   insights: { Icon: InsertChartRoundedIcon, color: '#CE93D8' },
-  trophies: { Icon: EmojiEventsRoundedIcon, color: '#FFD54F' },
   notifications: { Icon: NotificationsRoundedIcon, color: '#FF5FA2' },
-  offline: { Icon: CloudOffRoundedIcon, color: '#90A4AE' },
   install: { Icon: InstallMobileRoundedIcon, color: '#FF8AB5' },
   personalization: { Icon: TuneRoundedIcon, color: '#7C4DFF' },
 };
@@ -86,15 +74,15 @@ const ReleaseNotesModal = ({ open, onClose }: ReleaseNotesModalProps) => {
           </Box>
           <Box>
             <Typography variant="h5" sx={{ fontWeight: 900, color: '#FF5FA2', lineHeight: 1.2 }}>
-              Welcome to PinkCloud
+              What's New ☁️
             </Typography>
             <Typography variant="caption" sx={{ fontWeight: 700, color: 'text.secondary' }}>
-              Version {APP_VERSION} · First release
+              Version {APP_VERSION}
             </Typography>
           </Box>
         </Box>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1.5, lineHeight: 1.6 }}>
-          Thanks for being an early user! Here’s a quick tour of what you can do.
+          We've been busy making PinkCloud even better! Here's what's new.
         </Typography>
       </DialogTitle>
 
@@ -143,33 +131,6 @@ const ReleaseNotesModal = ({ open, onClose }: ReleaseNotesModalProps) => {
             );
           })}
         </Box>
-
-        <Box
-          sx={{
-            mt: 2.5,
-            p: 2,
-            borderRadius: '16px',
-            background: isDark ? 'rgba(255, 138, 101, 0.1)' : 'rgba(255, 138, 101, 0.08)',
-            border: isDark
-              ? '1px solid rgba(255, 138, 101, 0.25)'
-              : '1px solid rgba(255, 138, 101, 0.2)',
-          }}
-        >
-          <Typography variant="subtitle2" sx={{ fontWeight: 800, color: '#FF8A65', mb: 0.75 }}>
-            Early release notice
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-            This is our first release — you may run into bugs or rough edges. If something goes wrong,
-            please contact us at{' '}
-            <Link
-              href={`mailto:${RELEASE_CONTACT_EMAIL}`}
-              sx={{ fontWeight: 700, color: '#FF5FA2' }}
-            >
-              {RELEASE_CONTACT_EMAIL}
-            </Link>
-            .
-          </Typography>
-        </Box>
       </DialogContent>
 
       <DialogActions sx={{ px: 3, pb: 3, pt: 0 }}>
@@ -188,7 +149,7 @@ const ReleaseNotesModal = ({ open, onClose }: ReleaseNotesModalProps) => {
             boxShadow: '0 8px 24px rgba(255, 95, 162, 0.35)',
           }}
         >
-          Get started
+          Awesome!
         </Button>
       </DialogActions>
     </Dialog>

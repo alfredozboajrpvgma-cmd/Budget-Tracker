@@ -1,6 +1,7 @@
 import './env.js';
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 import pushRoutes from './routes/push.js';
 import { configureWebPush } from './cron/scheduler.js';
 
@@ -14,9 +15,17 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS ?? 'http://localhost:5173,ht
   .map(origin => origin.trim())
   .filter(Boolean);
 
+app.use(helmet());
+
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow requests with no origin only in non-production environments
+    if (!origin && process.env.NODE_ENV !== 'production') {
+      callback(null, true);
+      return;
+    }
+    
+    if (origin && allowedOrigins.includes(origin)) {
       callback(null, true);
       return;
     }

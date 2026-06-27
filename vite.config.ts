@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import obfuscatorPlugin from 'vite-plugin-javascript-obfuscator'
 import { VitePWA } from 'vite-plugin-pwa'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -10,6 +11,7 @@ const pkg = JSON.parse(readFileSync(join(__dirname, 'package.json'), 'utf-8')) a
 const appVersion = pkg.version
 const appBuildTime = new Date().toISOString()
 
+// Force vite reload
 export default defineConfig({
   define: {
     'import.meta.env.VITE_APP_VERSION': JSON.stringify(appVersion),
@@ -17,6 +19,22 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    obfuscatorPlugin({
+      include: ['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx'],
+      exclude: [/node_modules/],
+      apply: 'build',
+      debugger: true,
+      options: {
+        compact: true,
+        controlFlowFlattening: true,
+        controlFlowFlatteningThreshold: 0.75,
+        deadCodeInjection: true,
+        deadCodeInjectionThreshold: 0.4,
+        stringArray: true,
+        stringArrayEncoding: ['base64'],
+        stringArrayThreshold: 0.75
+      }
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: false,

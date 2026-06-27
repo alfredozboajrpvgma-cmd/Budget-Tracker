@@ -51,12 +51,12 @@ export function getVibeMessage(
   }
   if (expenses > 0) {
     if (budgetUsedPercent > 70) {
-      return `You spent ${fmt(expenses)} this month. Slow down — your vibe is dropping! 🌧️`;
+      return `You spent ${fmt(expenses)} this month. Slow down — your vibe is dropping!`;
     }
     return `You spent ${fmt(expenses)} this month. More spending means more rain in your sky.`;
   }
   if (savings > 0) {
-    return `You've saved ${fmt(savings)} this month. Keep it up! ☀️`;
+    return `You've saved ${fmt(savings)} this month. Keep it up!`;
   }
   return 'Log an expense or add savings to build your vibe!';
 }

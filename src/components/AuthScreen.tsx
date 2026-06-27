@@ -29,8 +29,6 @@ const AuthScreen = () => {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const captchaRef = useRef<AuthCaptchaHandle>(null);
 
-  const [modalType, setModalType] = useState<'terms' | 'privacy' | null>(null);
-
   const resetCaptcha = () => {
     captchaRef.current?.reset();
     setCaptchaToken(null);
@@ -217,29 +215,10 @@ const AuthScreen = () => {
           )}
 
           <Typography variant="caption" sx={{ display: 'block', mt: 4, color: '#6A5A62' }}>
-            By continuing, you agree to PinkCloud's <a href="#" onClick={(e) => { e.preventDefault(); setModalType('terms'); }} style={{ color: '#FF5FA2', textDecoration: 'none', fontWeight: 'bold' }}>Terms of Service</a> and <a href="#" onClick={(e) => { e.preventDefault(); setModalType('privacy'); }} style={{ color: '#FF5FA2', textDecoration: 'none', fontWeight: 'bold' }}>Privacy Policy</a>
+            By continuing, you agree to PinkCloud's <a href="/terms" style={{ color: '#FF5FA2', textDecoration: 'none', fontWeight: 'bold' }}>Terms of Service</a> and <a href="/privacy" style={{ color: '#FF5FA2', textDecoration: 'none', fontWeight: 'bold' }}>Privacy Policy</a>
           </Typography>
         </Card>
       </motion.div>
-
-      {/* Modals for Terms and Privacy */}
-      {modalType && (
-        <Box sx={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, bgcolor: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', p: 3 }} onClick={() => setModalType(null)}>
-          <Card sx={{ p: 4, maxWidth: 500, width: '100%', maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
-            <Typography variant="h5" sx={{ fontWeight: 800, mb: 2, color: '#FF5FA2' }}>
-              {modalType === 'terms' ? 'Terms of Service' : 'Privacy Policy'}
-            </Typography>
-            <Typography variant="body2" sx={{ color: isDark ? '#E8E2E4' : '#5C4A52', mb: 3 }}>
-              {modalType === 'terms' 
-                ? 'Welcome to PinkCloud. By using our service, you agree to build your dream clouds responsibly. Do not use PinkCloud for any illegal activities. All your data belongs to you.'
-                : 'At PinkCloud, we take your privacy seriously. We only store information necessary to provide you with the best budgeting experience. We do not sell your personal data to third parties.'}
-            </Typography>
-            <Button variant="contained" onClick={() => setModalType(null)} sx={{ borderRadius: 3, fontWeight: 800 }}>
-              Got it
-            </Button>
-          </Card>
-        </Box>
-      )}
     </Box>
   );
 };

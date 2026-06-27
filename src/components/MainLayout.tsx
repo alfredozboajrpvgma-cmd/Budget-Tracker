@@ -1,6 +1,7 @@
 import { useState, lazy, Suspense, useEffect } from 'react';
 import { Box, SwipeableDrawer, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, IconButton } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { motion } from 'framer-motion';
 import BottomNav from './BottomNav';
 import ViewContainer from './ViewContainer';
@@ -9,6 +10,7 @@ import { useApp } from '../context/AppContext';
 import { useThemeMode } from '../context/ThemeContext';
 import ReleaseNotesModal from './ReleaseNotesModal';
 import { markReleaseSeen, shouldShowReleaseNotes } from '../utils/releaseNotes';
+import SettingsDrawer from './SettingsDrawer';
 
 const Onboarding = lazy(() => import('./Onboarding'));
 const CloudPet = lazy(() => import('./CloudPet'));
@@ -44,6 +46,7 @@ const MainLayout = ({ needsOnboarding }: MainLayoutProps) => {
   const [joinCode, setJoinCode] = useState('');
   const [joining, setJoining] = useState(false);
   const [releaseNotesOpen, setReleaseNotesOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
     if (!needsOnboarding && shouldShowReleaseNotes()) {
@@ -111,10 +114,18 @@ const MainLayout = ({ needsOnboarding }: MainLayoutProps) => {
       <Suspense fallback={null}>
         <SkyBackground />
       </Suspense>
-      <Box sx={{ flexShrink: 0, px: 3, pt: 3, pb: 2, display: 'flex', alignItems: 'center', background: isDark ? 'rgba(40,28,58,0.85)' : 'rgba(255,255,255,0.85)', backdropFilter: 'blur(10px)', zIndex: 10, borderBottom: `1px solid rgba(255, 95, 162, ${isDark ? '0.2' : '0.1'})` }}>
+      <Box sx={{ flexShrink: 0, px: 3, pt: 3, pb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: isDark ? 'rgba(40,28,58,0.85)' : 'rgba(255,255,255,0.85)', backdropFilter: 'blur(10px)', zIndex: 10, borderBottom: `1px solid rgba(255, 95, 162, ${isDark ? '0.2' : '0.1'})` }}>
         <Typography variant="h4" sx={{ fontWeight: 900, color: '#FF5FA2', display: 'flex', alignItems: 'center', gap: 1, textShadow: '0 2px 10px rgba(255, 95, 162, 0.2)' }}>
           PinkCloud
         </Typography>
+        <IconButton 
+          onClick={() => setSettingsOpen(true)} 
+          aria-label="Menu" 
+          disableRipple
+          sx={{ color: '#FF5FA2', '&:hover': { backgroundColor: 'transparent' } }}
+        >
+          <MenuRoundedIcon />
+        </IconButton>
       </Box>
       <Box sx={{ flexGrow: 1, overflowY: 'auto', overflowX: 'hidden', pb: '90px' }}>
         <ViewContainer
@@ -237,6 +248,7 @@ const MainLayout = ({ needsOnboarding }: MainLayoutProps) => {
       </Dialog>
 
       <ReleaseNotesModal open={releaseNotesOpen} onClose={handleReleaseNotesClose} />
+      <SettingsDrawer open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </Box>
   );
 };

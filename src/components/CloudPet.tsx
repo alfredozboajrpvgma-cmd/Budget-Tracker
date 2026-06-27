@@ -86,10 +86,12 @@ const CloudPet = () => {
       aria-label="Cloud pet companion"
       sx={{
         position: 'fixed',
-        bottom: 110,
-        right: 24,
+        bottom: { xs: 120, sm: 130 },
+        right: { xs: 16, sm: 24 },
         zIndex: 50,
         cursor: 'pointer',
+        transform: 'scale(0.85)',
+        transformOrigin: 'bottom right',
         '&:hover .pet-body': { filter: 'drop-shadow(0 10px 28px rgba(255, 95, 162, 0.45))' },
       }}
     >
