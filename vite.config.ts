@@ -22,6 +22,7 @@ export default defineConfig({
     obfuscatorPlugin({
       include: ['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx'],
       exclude: [/node_modules/],
+      enforce: 'post',
       apply: 'build',
       debugger: true,
       options: {
