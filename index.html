@@ -54,7 +54,10 @@
   <script type="module" src="/src/main.tsx"></script>
   <script>
     window.addEventListener('vite:preloadError', () => {
-      window.location.reload();
+      if (!sessionStorage.getItem('chunk_reload')) {
+        sessionStorage.setItem('chunk_reload', '1');
+        window.location.reload();
+      }
     });
   </script>
 </body>
